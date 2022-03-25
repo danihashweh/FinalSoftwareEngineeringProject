@@ -1,7 +1,8 @@
-package com.greglturnquist.model.form;
+package com.greglturnquist.model.question;
 
 import com.greglturnquist.model.Answer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.greglturnquist.model.form.Form;
 
 import javax.persistence.*;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package com.greglturnquist.model;
 
-import com.greglturnquist.model.form.Question;
+import com.greglturnquist.model.question.Question;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;

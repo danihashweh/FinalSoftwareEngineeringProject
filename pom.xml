@@ -62,10 +62,6 @@
 	</build>
 	<modules>
 		<module>basic</module>
-		<module>hypermedia</module>
-		<module>conditional</module>
-		<module>events</module>
-		<module>security</module>
 	</modules>
 
 </project>
