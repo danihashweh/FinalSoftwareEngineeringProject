@@ -93,7 +93,14 @@ public class WebUIController {
         return "thanks";
 
     }
-
+    @GetMapping("/home")
+    public String getSurvey(Model model) {
+        if(closed == true){
+            return "home";
+        }else{
+            return "thanks";
+        }
+    }
     @GetMapping("/question")
     public String inputQuestionData(Model model) {
         model.addAttribute("questionForm", new QuestionForm());
@@ -154,7 +161,6 @@ public class WebUIController {
 
         return "survey2";
     }
-
 
     @GetMapping("/controlPanel")
     public String displayControlPanel() {
