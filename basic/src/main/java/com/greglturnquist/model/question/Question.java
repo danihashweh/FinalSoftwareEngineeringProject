@@ -13,7 +13,6 @@ import java.util.UUID;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Question {
-
     //unique id for each Question
     @Id
     private UUID id;
