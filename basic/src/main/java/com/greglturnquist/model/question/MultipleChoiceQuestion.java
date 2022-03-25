@@ -6,22 +6,15 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-enum Type {
-    SINGLE_SELECTION,
-    MULTIPLE_SELECTION
-}
-
 @Entity
 public class MultipleChoiceQuestion extends Question {
 
     @ElementCollection
     private Set<String> questionOptions;
-    private Type questionType;
     private QuestionType type;
 
-    public MultipleChoiceQuestion(String question, Type questionType){
+    public MultipleChoiceQuestion(String question){
         super(question);
-        this.questionType = questionType;
         this.questionOptions = new HashSet<>();
         this.type = QuestionType.MULTIPLE_CHOICE;
     }
@@ -35,12 +28,13 @@ public class MultipleChoiceQuestion extends Question {
         return questionOptions;
     }
 
-    public Type getType() {
-        return questionType;
+
+    public QuestionType getType() {
+        return type;
     }
 
-    public void setType(Type questionType) {
-        this.questionType = questionType;
+    public void setType(QuestionType type) {
+        this.type = type;
     }
 
     public boolean addQuestionOption(String option) {
@@ -56,11 +50,11 @@ public class MultipleChoiceQuestion extends Question {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MultipleChoiceQuestion multipleChoiceQuestion = (MultipleChoiceQuestion) o;
-        return Objects.equals(questionOptions, multipleChoiceQuestion.getQuestionOptions()) && Objects.equals(questionType, multipleChoiceQuestion.getType());
+        return Objects.equals(questionOptions, multipleChoiceQuestion.getQuestionOptions()) && Objects.equals(type, multipleChoiceQuestion.getType());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(questionOptions, questionType);
+        return Objects.hash(questionOptions);
     }
 }

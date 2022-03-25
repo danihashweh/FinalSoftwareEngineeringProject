@@ -2,6 +2,7 @@ package com.greglturnquist;
 
 import com.greglturnquist.model.form.Form;
 import com.greglturnquist.model.question.Question;
+import com.greglturnquist.model.question.TextQuestion;
 import com.greglturnquist.repository.FormRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +25,9 @@ public class FormApplication {
         return (args) -> {
             Form form = new Form();
 
-            form.addQuestion(new Question());
-            form.addQuestion(new Question("what day is it?"));
-            form.addQuestion(new Question("Do you enjoy sports?"));
+            form.addQuestion(new TextQuestion());
+            form.addQuestion(new TextQuestion("what day is it?"));
+            form.addQuestion(new TextQuestion("Do you enjoy the day?"));
 
             repository.save(form);
 
