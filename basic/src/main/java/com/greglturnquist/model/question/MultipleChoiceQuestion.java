@@ -1,4 +1,5 @@
 package com.greglturnquist.model.question;
+
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import java.util.HashSet;
@@ -16,15 +17,18 @@ public class MultipleChoiceQuestion extends Question {
     @ElementCollection
     private Set<String> questionOptions;
     private Type questionType;
+    private QuestionType type;
 
     public MultipleChoiceQuestion(String question, Type questionType){
         super(question);
         this.questionType = questionType;
         this.questionOptions = new HashSet<>();
+        this.type = QuestionType.MULTIPLE_CHOICE;
     }
 
     public MultipleChoiceQuestion() {
         super();
+        this.type = QuestionType.MULTIPLE_CHOICE;
     }
 
     public Set<String> getQuestionOptions(){

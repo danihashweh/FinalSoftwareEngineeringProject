@@ -1,4 +1,6 @@
-package com.greglturnquist.model.question;
+package com.example.model.form;
+import com.greglturnquist.model.question.Question;
+import com.greglturnquist.model.question.QuestionType;
 
 import javax.persistence.Entity;
 
@@ -7,15 +9,18 @@ public class NumberRangeQuestion extends Question {
 
     private int minValue;
     private int maxValue;
+    private QuestionType type;
 
     public NumberRangeQuestion(String question, int minValue, int maxValue) {
         super(question);
         this.minValue = minValue;
         this.maxValue = maxValue;
+        this.type = QuestionType.NUMBER_RANGE;
     }
 
     public NumberRangeQuestion() {
         super();
+        this.type = QuestionType.NUMBER_RANGE;
     }
 
     public int getMinValue() {
