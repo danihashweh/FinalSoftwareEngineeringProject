@@ -41,6 +41,7 @@ export default class Form extends React.Component {
         const {formValues} = this.state
         this.setState({formValues: {...formValues, [id]: value.text}});
     };
+
   handleSubmit = (event) => {
     const { formValues } = this.state
     event.preventDefault();
@@ -48,8 +49,7 @@ export default class Form extends React.Component {
     client({method: 'POST', path: '/submission', entity: Object.values(formValues),
       headers: {'Content-Type': 'application/json'}}).done(response => {
         console.log("finished")
-        window.location.assign("http://localhost:8080/thanks");
-        });
+    });
   };
 
     render() {

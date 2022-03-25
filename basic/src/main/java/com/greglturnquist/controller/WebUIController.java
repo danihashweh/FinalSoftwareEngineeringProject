@@ -8,7 +8,6 @@ import com.greglturnquist.model.form.data.DataForm;
 import com.greglturnquist.model.form.data.QuestionForm;
 import com.greglturnquist.repository.FormRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -90,17 +89,9 @@ public class WebUIController {
             answer.setQuestion(questionList.get(i));
         }
         repository.save(f);
-        return "thanks";
+        return "Thanks";
+    }
 
-    }
-    @GetMapping("/home")
-    public String getSurvey(Model model) {
-        if(closed == true){
-            return "home";
-        }else{
-            return "thanks";
-        }
-    }
     @GetMapping("/question")
     public String inputQuestionData(Model model) {
         model.addAttribute("questionForm", new QuestionForm());
@@ -136,11 +127,6 @@ public class WebUIController {
         return "survey";
     }
 
-    @GetMapping("/thanks")
-    public String displayThanks(Model model) {
-       return "thanks";
-    }
-
     @GetMapping("/survey2")
     public String displaySurvey2(Model model) {
 //        AnswerList answerList = new AnswerList();
@@ -162,6 +148,7 @@ public class WebUIController {
         return "survey2";
     }
 
+
     @GetMapping("/controlPanel")
     public String displayControlPanel() {
         return "controlPanel";
@@ -169,7 +156,7 @@ public class WebUIController {
 
     @GetMapping("/closeForm")
     public String closeForm(Model model) {
-        closed = false;
+        this.closed = false;
 //        Iterable<Form> response = repository.findAll();
 //        List<Form> temp = new ArrayList<Form>();
 //        for (Form f : response) {
