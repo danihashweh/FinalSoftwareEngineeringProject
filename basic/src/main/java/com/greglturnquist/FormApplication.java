@@ -3,6 +3,7 @@ package com.greglturnquist;
 import com.greglturnquist.model.form.Form;
 import com.greglturnquist.model.question.NumberRangeQuestion;
 import com.greglturnquist.model.question.Question;
+import com.greglturnquist.model.question.TextQuestion;
 import com.greglturnquist.repository.FormRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

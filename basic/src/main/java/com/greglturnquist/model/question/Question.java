@@ -1,7 +1,7 @@
 package com.greglturnquist.model.question;
 
-import com.greglturnquist.model.Answer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.greglturnquist.model.Answer;
 import com.greglturnquist.model.form.Form;
 
 import javax.persistence.*;
@@ -11,8 +11,8 @@ import java.util.UUID;
 
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Question {
-
     //unique id for each Question
     @Id
     private UUID id;
