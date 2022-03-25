@@ -8,6 +8,7 @@ import com.greglturnquist.model.form.data.DataForm;
 import com.greglturnquist.model.form.data.QuestionForm;
 import com.greglturnquist.repository.FormRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -89,7 +90,8 @@ public class WebUIController {
             answer.setQuestion(questionList.get(i));
         }
         repository.save(f);
-        return "Thanks";
+        return "thanks";
+
     }
 
     @GetMapping("/question")
@@ -127,6 +129,11 @@ public class WebUIController {
         return "survey";
     }
 
+    @GetMapping("/thanks")
+    public String displayThanks(Model model) {
+       return "thanks";
+    }
+
     @GetMapping("/survey2")
     public String displaySurvey2(Model model) {
 //        AnswerList answerList = new AnswerList();
@@ -156,7 +163,7 @@ public class WebUIController {
 
     @GetMapping("/closeForm")
     public String closeForm(Model model) {
-        this.closed = false;
+        closed = false;
 //        Iterable<Form> response = repository.findAll();
 //        List<Form> temp = new ArrayList<Form>();
 //        for (Form f : response) {
