@@ -1,6 +1,4 @@
-package com.example.model.form;
-import com.greglturnquist.model.question.Question;
-import com.greglturnquist.model.question.QuestionType;
+package com.greglturnquist.model.question;
 
 import javax.persistence.Entity;
 

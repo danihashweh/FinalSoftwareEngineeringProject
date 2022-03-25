@@ -1,4 +1,8 @@
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
 
 const React = require('react'); // <1>
 import Question from './Question'
@@ -40,10 +44,19 @@ export default class Form extends React.Component{
     const questions = questionsArr.map(question =>
         <Question key={question.id} type={'text'} answer={formValues[question.id]} handleInputChange={this.handleInputChange}{...question}/>
     );
+    const handleSubmit = (event) => {
+                event.preventDefault();
+                console.log(formValues);
+              };
     return (
-      <form>
+      <form onSubmit={handleSubmit}>
         <Grid container alignItems="center" justify="center" direction="column">
         {questions}
+        </Grid>
+        <Grid container justify="center">
+        <Button variant="contained" color="primary" type="submit">
+        Submit
+        </Button>
         </Grid>
       </form>
     )
