@@ -11,7 +11,7 @@ class App extends React.Component { // <1>
 
 	constructor(props) {
 		super(props);
-		this.state = {forms: []};
+		this.state = {form: {questions : []}};
 	}
 
 	componentDidMount() { // <2>
@@ -22,7 +22,7 @@ class App extends React.Component { // <1>
 
 	render() { // <3>
 		return (
-			<Form form={this.state.form}/>
+			<Form questions={this.state.form.questions}/>
 		)
 	}
 }

@@ -4,7 +4,7 @@ export default class Question extends React.Component{
   render() {
     return (
       <div>
-        <div>{this.props.question.value}</div>
+        <div>{this.props.value}</div>
       </div>
     )
   }
