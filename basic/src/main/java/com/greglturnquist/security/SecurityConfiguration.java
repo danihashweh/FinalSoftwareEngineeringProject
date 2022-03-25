@@ -20,6 +20,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
+                .cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers( "/admin").hasRole("ADMIN")
                 .antMatchers( "/answerResults").hasRole("ADMIN")

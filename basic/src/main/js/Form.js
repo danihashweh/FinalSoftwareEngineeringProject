@@ -2,6 +2,8 @@ import Grid from "@material-ui/core/Grid";
 
 const React = require('react'); // <1>
 import Question from './Question'
+import Button from "@material-ui/core/Button";
+const client = require('./client'); // <3>
 
 
 export default class Form extends React.Component{
@@ -31,6 +33,15 @@ export default class Form extends React.Component{
     this.setState({ formValues: {...formValues, [name]: value}});
   };
 
+  handleSubmit = (event) => {
+    const { formValues } = this.state
+    event.preventDefault();
+    console.log(formValues);
+    client({method: 'POST', path: '/submission', entity: Object.values(formValues),
+      headers: {'Content-Type': 'application/json'}}).done(response => {
+        console.log("finished")
+    });
+  };
 
   render() {
 
@@ -41,9 +52,12 @@ export default class Form extends React.Component{
         <Question key={question.id} answer={formValues[question.id]} handleInputChange={this.handleInputChange}{...question}/>
     );
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <Grid container alignItems="center" justify="center" direction="column">
         {questions}
+          <Button variant="contained" color="primary" type="submit">
+            Submit
+          </Button>
         </Grid>
       </form>
     )
