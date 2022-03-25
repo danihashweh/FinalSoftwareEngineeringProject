@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+
+<h1>SurveyMonkey</h1><br>
+
+<script>
+    $(document).ready(function () {
+            $(".main").show();
+
+            $(".newQuestion").click(function () {
+                $(".main").hide()
+                $(".question").show()
+            })
+
+            $(".questionConfirm").click(function () {
+                $.ajax({
+                    url: "/question",
+                    method: "POST",
+                    data: {
+                        id: $("input#id").val(),
+                        buddy: $("input#name").val()
+                    }
+                }).then(function () {
+                    alert("Created question")
+                    $(".question").hide()
+                    $(".main").show()
+                })
+            })
+
+            $(".list").click(function () {
+                $(".main").hide()
+                $(".select").show()
+            })
+
+            $(".addrConfirm").click(function () {
+                $.ajax({
+                    url: "/Form/" + $("input#addrId").val(),
+                    method: "GET",
+                }).then(function (data) {
+                    let temp = ""
+
+                    for (let i = 0; i < data.questions.length; i++) {
+                        temp = temp.concat(data.questions[i].name)
+                        temp = temp.concat('\n')
+                    }
+
+                    $(".questions").text(temp).show()
+
+                    $(".select").hide()
+                    $(".main").show()
+                })
+            })
+        }
+    )
+</script>
+
+<p class="questions"></p>
+
+<div class="main" style="display: none">
+    <button class="newQuestion">Create a question</button>
+    <button class="list">List Forms</button>
+</div>
+
+<div class="question" style="display: none">
+    <form>
+        <label for="id">QuestionId:</label>
+        <input type="text" id="id" name="id"><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+    </form>
+    <button class="questionConfirm">Confirm</button>
+</div>
+
+<div class="select" style="display: none">
+    <form>
+        <label for="formId">FormId:</label>
+        <input type="text" id="formId" name="formId">
+    </form>
+    <button class="formConfirm">Confirm</button>
+</div>
+
+</body>
+</html>
