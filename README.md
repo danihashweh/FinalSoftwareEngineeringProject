@@ -17,8 +17,21 @@ For milestone 1, the general functionality was completed and the application is 
 
 **Milestone 2:**
 
+Notion meeting notes: https://www.notion.so/8d8b2bef2b9b4f6580463c6ea37e6fe1?v=d824c29715624257a5d3a539615d6841&p=e80f49a7afee406da187d73ee3426b5e
+
 Front-End: React
 
 Back-end: Java Spring
 
-For this milestone, we moved our front-end to a framework known as react.
+For this milestone, we moved our front-end to a framework known as react. Since this milestone was lengthy in terms of work to move over from our original
+thymeleaf/html framework, not as many new features were added. We added an authentication page using spring security, which allows access to certain pages 
+depending on the type of user logged in. For this feature, we kept a master admin user/password and a test user user/password which can be found in the security config. We also added different types of questions so that the survey is not limited to just text areas. Building from the previous milestone, our project is still being integrated with CircleCI and Heroku is being used to deploy the application. Our progress is being tracked the same way as our previous milestone.
+
+**Milestone 3:**
+For the final milestone we want to achieve a polished version of a survey monkey form.
+
+Features to be added:
+- Ability to add more than one survey
+- Give the ability to create users 
+
+
