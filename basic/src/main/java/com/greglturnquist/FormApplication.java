@@ -1,6 +1,7 @@
 package com.greglturnquist;
 
 import com.greglturnquist.model.form.Form;
+import com.greglturnquist.model.question.NumberRangeQuestion;
 import com.greglturnquist.model.question.Question;
 import com.greglturnquist.repository.FormRepository;
 import org.slf4j.Logger;
@@ -24,9 +25,10 @@ public class FormApplication {
         return (args) -> {
             Form form = new Form();
 
-            form.addQuestion(new Question());
-            form.addQuestion(new Question("what day is it?"));
-            form.addQuestion(new Question("Do you enjoy sports?"));
+//            form.addQuestion(new Question());
+//            form.addQuestion(new Question("what day is it?"));
+//            form.addQuestion(new Question("Do you enjoy sports?"));
+            form.addQuestion(new NumberRangeQuestion("Is krishan a bastard?", 1, 5));
 
             repository.save(form);
 

@@ -38,7 +38,7 @@ export default class Form extends React.Component{
 
     const questionsArr = this.props?.questions ?? []
     const questions = questionsArr.map(question =>
-        <Question key={question.id} type={'text'} answer={formValues[question.id]} handleInputChange={this.handleInputChange}{...question}/>
+        <Question key={question.id} type={'NUMBER_RANGE'} answer={formValues[question.id]} handleInputChange={this.handleInputChange}{...question}/>
     );
     return (
       <form>
