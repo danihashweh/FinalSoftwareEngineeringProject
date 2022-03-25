@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+
+<h1>SurveyMonkey</h1><br>
+
+<script>
+    $(document).ready(function () {
+            $(".main").show();
+
+            $(".submit").click(function () {
+                $.ajax({
+                    url: "/create",
+                    method: "GET"
+                }).then(function () {
+                    alert("Created a new Form");
+                    location.href="/controlPanel"
+                })
+            })
+
+            $(".closeSurvey").click(function () {
+                $.ajax({
+                    url: "/closeForm",
+                    method: "GET"
+                }).then(function () {
+                    alert("Closed Survey");
+                    location.href="/closeForm"
+                })
+            })
+        }
+    )
+</script>
+
+<div class="main" style="display: none">
+    <button class="submit">Create a form</button>
+    <button class="closeSurvey">Close survey</button>
+</div>
+
+</body>
+</html>
