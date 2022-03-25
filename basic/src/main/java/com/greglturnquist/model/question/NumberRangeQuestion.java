@@ -39,6 +39,12 @@ public class NumberRangeQuestion extends Question {
         this.maxValue = maxValue;
     }
 
+    public QuestionType getType(){
+        return type;
+    }
+    public void setType(QuestionType type){
+        this.type = type;
+    }
     @Override
     public String toString() {
         return "Number Range Question{" + "min= " + minValue + ", max=" + maxValue + '}';
