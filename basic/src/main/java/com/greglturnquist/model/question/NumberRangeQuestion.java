@@ -1,4 +1,4 @@
-package com.example.model.form;
+package com.greglturnquist.model.question;
 import com.greglturnquist.model.question.Question;
 import com.greglturnquist.model.question.QuestionType;
 
