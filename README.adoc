@@ -1,22 +1,15 @@
-:doctype: book
-:tags: [rest,hateoas,data,react,security]
-:projects: [spring-data-rest,spring-data-jpa,spring-hateoas,spring-security,spring-boot,]
-:toc: left
-:icons: font
-:source-highlighter: prettify
-:image-width: 500
+**SYSC 4806 Course Project**
 
-= React.js and Spring Data REST
+Application: Mini-survey monkey
 
-This tutorial shows a collection of apps that use Spring Data REST and its powerful backend functionality, combined with React's sophisticated features to build an easy-to-understand UI.
+Back-end: Java Spring
 
-* https://www.youtube.com/watch?v=TgCr7v9tdKM[Spring Data REST] provides a fast way to build hypermedia-powered repositories.
-* https://facebook.github.io/react/index.html[React] is Facebook's solution to efficient, fast, and easy-to-use views in JavaScript.
+Contributors: Dani Hashweh, Abdalla El Nakla, Krishan Easparan, Isaac Leung 
 
-include::basic/README.adoc[leveloffset=+1]
-include::hypermedia/README.adoc[leveloffset=+1]
-include::conditional/README.adoc[leveloffset=+1]
-include::events/README.adoc[leveloffset=+1]
-include::security/README.adoc[leveloffset=+1]
+Notion meeting notes: https://www.notion.so/8d8b2bef2b9b4f6580463c6ea37e6fe1?v=d824c29715624257a5d3a539615d6841
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/footer.adoc[]
+UML Class diagram for project: 
+![UML](https://user-images.githubusercontent.com/28928010/157899366-e332bbe5-743d-41e9-90e4-766cfc61aa89.png)
+
+For milestone 1, the general functionality was completed and the application is operational. A user can participate in a survey that contains only text answers, and once submitted the information will be sent to the database. An admin will be able to close the survey - and once closed, can view the results of the survey. This project is integrated with CircleCI, where the build and test results can be viewed. Heroku was used to deploy this application. All tasks were kept track of using a kanban board - and daily scrum meetings were held to ensure that progress is being tracked. 
+
