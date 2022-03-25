@@ -25,7 +25,7 @@ public class FormApplication {
         return (args) -> {
             Form form = new Form();
 
-            form.addQuestion(new TextQuestion());
+            form.addQuestion(new TextQuestion("What colour do you like?"));
             form.addQuestion(new TextQuestion("what day is it?"));
             form.addQuestion(new TextQuestion("Do you enjoy the day?"));
 
