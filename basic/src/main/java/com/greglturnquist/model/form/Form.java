@@ -1,5 +1,7 @@
 package com.greglturnquist.model.form;
 
+import com.greglturnquist.model.question.Question;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
