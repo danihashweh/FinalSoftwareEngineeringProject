@@ -19,6 +19,9 @@ For milestone 1, the general functionality was completed and the application is 
 
 Notion meeting notes: https://www.notion.so/8d8b2bef2b9b4f6580463c6ea37e6fe1?v=d824c29715624257a5d3a539615d6841&p=e80f49a7afee406da187d73ee3426b5e
 
+UML Class diagram (Milestone 2 Updated)
+![image](https://user-images.githubusercontent.com/28928010/160149157-b2415753-8d2a-47fa-9cf9-7862107349c0.png)
+
 Front-End: React
 
 Back-end: Java Spring
