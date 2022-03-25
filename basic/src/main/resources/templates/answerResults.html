@@ -1,0 +1,54 @@
+<html xmlns:th="https://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Survey</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<h2>Survey</h2>
+<script>
+let temp = [];
+    $(document).ready(function () {
+            $(".main").show();
+            $.ajax({
+                url: "/form",
+                method: "GET",
+            }).then(function (data) {
+                console.log(data)
+                let temp = ""
+                for (let i = 0; i < data.questions.length; i++) {
+                var element = document.createElement("h3");
+                var element2 = document.createElement("h3");
+                element.innerHTML = data.questions[i].value;
+                for(let x = 0; x < data.questions[i].answerList.length; x++){
+                                element2.innerHTML += data.questions[i].answerList[x].answer;
+                }
+
+                $(".questions" + i).append(element);
+                $(".answers" + i).append(element2);
+}
+            })
+
+        })
+
+
+
+</script>
+<div class="main" style="display: none">
+    <p class="questions0"></p>
+    <p class="answers0"></p>
+    <p class="questions1"></p>
+    <p class="answers1"></p>
+    <p class="questions2"></p>
+    <p class="answers2"></p>
+    <p class="questions3"></p>
+    <p class="answers3"></p>
+    </p>
+</div>
+
+<form action="/admin">
+    <input type="submit" value="Home" />
+</form>
+
+</body>
+</html>
