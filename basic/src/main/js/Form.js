@@ -1,3 +1,5 @@
+import Grid from "@material-ui/core/Grid";
+
 const React = require('react'); // <1>
 import Question from './Question'
 
@@ -12,7 +14,6 @@ export default class Form extends React.Component{
   componentDidUpdate(prevProps, prevState, snapshot) {
 
     const { questions } = this.props
-
 
     if (prevProps.questions.length !== questions.length ) {
       let formValues = {}
@@ -37,12 +38,14 @@ export default class Form extends React.Component{
 
     const questionsArr = this.props?.questions ?? []
     const questions = questionsArr.map(question =>
-      <Question key={question.id} type={'text'} answer={formValues[question.id]} {...question}/>
+        <Question key={question.id} type={'text'} answer={formValues[question.id]} handleInputChange={this.handleInputChange}{...question}/>
     );
     return (
-      <div>
+      <form>
+        <Grid container alignItems="center" justify="center" direction="column">
         {questions}
-      </div>
+        </Grid>
+      </form>
     )
   }
 }
