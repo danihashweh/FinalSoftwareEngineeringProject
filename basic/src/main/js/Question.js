@@ -32,7 +32,7 @@ export default class Question extends React.Component{
     const { type } = this.props
 
     switch(type) {
-      case "text":
+      case "TEXT":
         return this.renderTextQuestion()
       default:
         return (
