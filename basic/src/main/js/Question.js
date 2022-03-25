@@ -30,45 +30,33 @@ export default class Question extends React.Component {
     }
 
     renderRangeQuestion() {
-        const {value, id, handleInputChange, answer, min, max} = this.props
+        const {value, id, handleInputChange, answer, minValue, maxValue} = this.props
         const questions = [];
-            for (let i = min; i < max; i++) {
+            for (let i = minValue; i <= maxValue; i++) {
                 questions.push({value: i, text: i.toString()})
             }
             const likertOptions = {
                 question: value,
-                responses: questions,
-                handleInputChange: val => {
-                    console.log(val);
-                }
+                responses: questions
             };
             return (
-                <Likert {...likertOptions} />
+                <Grid item>
+                <Likert
+                    {...likertOptions}
+                    id={id}
+                    name={id}
+                    value={answer}
+                    onChange={handleInputChange}
+                />
+                </Grid>
             )
-
-        // const likertOptions = {
-        //     question: "What is your opinion of the President’s performance?",
-        //     responses: [
-        //         {value: 1, text: "Abysmal"},
-        //         {value: 2, text: "Poor"},
-        //         {value: 3, text: "Average", checked: true},
-        //         {value: 4, text: "Good"},
-        //         {value: 5, text: "Excellent"}
-        //     ],
-        //     handleInputChange: val => {
-        //         console.log(val);
-        //     }
-        // };
-        // return (
-        //     <Likert {...likertOptions} />
-        // )
     }
 
     render() {
         const {type} = this.props
 
         switch (type) {
-            case "text":
+            case "NUMBER_RANGE":
                 return this.renderRangeQuestion()
             default:
                 return (
