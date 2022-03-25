@@ -2,6 +2,7 @@ package com.greglturnquist;
 
 import com.greglturnquist.model.form.Form;
 import com.greglturnquist.model.question.NumberRangeQuestion;
+import com.greglturnquist.model.question.MultipleChoiceQuestion;
 import com.greglturnquist.model.question.Question;
 import com.greglturnquist.model.question.TextQuestion;
 import com.greglturnquist.repository.FormRepository;
@@ -26,10 +27,18 @@ public class FormApplication {
         return (args) -> {
             Form form = new Form();
 
-//            form.addQuestion(new Question());
-//            form.addQuestion(new Question("what day is it?"));
-//            form.addQuestion(new Question("Do you enjoy sports?"));
-            form.addQuestion(new NumberRangeQuestion("Is krishan a bastard?", 1, 5));
+            form.addQuestion(new NumberRangeQuestion("How much do you like soccer?", 1, 5));
+            form.addQuestion(new TextQuestion("What colour do you like?"));
+            form.addQuestion(new TextQuestion("what day is it?"));
+            form.addQuestion(new TextQuestion("Do you enjoy the day?"));
+
+            MultipleChoiceQuestion mcq = new MultipleChoiceQuestion("What season do you like?");
+            mcq.addQuestionOption("Winter");
+            mcq.addQuestionOption("Spring");
+            mcq.addQuestionOption("Summer");
+            mcq.addQuestionOption("Fall");
+            form.addQuestion(mcq);
+
 
             repository.save(form);
 
