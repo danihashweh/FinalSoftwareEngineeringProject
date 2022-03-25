@@ -1,7 +1,7 @@
 package com.greglturnquist.repository;
 
 import com.greglturnquist.model.form.Form;
-import com.greglturnquist.model.form.Question;
+import com.greglturnquist.model.question.Question;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 

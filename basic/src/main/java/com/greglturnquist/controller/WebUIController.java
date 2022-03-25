@@ -2,7 +2,7 @@ package com.greglturnquist.controller;
 
 import com.greglturnquist.model.Answer;
 import com.greglturnquist.model.form.Form;
-import com.greglturnquist.model.form.Question;
+import com.greglturnquist.model.question.Question;
 import com.greglturnquist.model.form.data.AnswerAndQuestion;
 import com.greglturnquist.model.form.data.DataForm;
 import com.greglturnquist.model.form.data.QuestionForm;
