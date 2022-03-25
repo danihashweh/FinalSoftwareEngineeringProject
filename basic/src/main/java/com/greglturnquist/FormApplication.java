@@ -1,6 +1,7 @@
 package com.greglturnquist;
 
 import com.greglturnquist.model.form.Form;
+import com.greglturnquist.model.question.MultipleChoiceQuestion;
 import com.greglturnquist.model.question.Question;
 import com.greglturnquist.model.question.TextQuestion;
 import com.greglturnquist.repository.FormRepository;
@@ -28,6 +29,14 @@ public class FormApplication {
             form.addQuestion(new TextQuestion("What colour do you like?"));
             form.addQuestion(new TextQuestion("what day is it?"));
             form.addQuestion(new TextQuestion("Do you enjoy the day?"));
+
+            MultipleChoiceQuestion mcq = new MultipleChoiceQuestion("What season do you like?");
+            mcq.addQuestionOption("Winter");
+            mcq.addQuestionOption("Spring");
+            mcq.addQuestionOption("Summer");
+            mcq.addQuestionOption("Fall");
+            form.addQuestion(mcq);
+
 
             repository.save(form);
 
