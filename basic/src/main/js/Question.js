@@ -11,68 +11,12 @@ const React = require('react'); // <1>
 
 export default class Question extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
+    constructor(props) {
+        super(props);
+    }
 
-  renderTextQuestion() {
-    const { value, id, handleInputChange, answer } = this.props
-    return (
-      <>
-        <Grid item>
-          <FormLabel>{value}</FormLabel>
-          <TextField
-            id={id}
-            name={id}
-            type="string"
-            value={answer}
-            onChange={handleInputChange}
-          />
-        </Grid>
-      </>
-    )
-  }
-
-  renderMCQuestion() {
-    const { value, id, handleInputChange, answer, questionOptions} = this.props
-
-    const fCLs = questionOptions.map((qO) =>
-      (<FormControlLabel
-        key={qO}
-        value={qO}
-        control={<Radio size="small" />}
-        label={qO}
-      />)
-    )
-
-    return (
-      <>
-        <Grid item>
-          <FormControl>
-            <FormLabel>{value}</FormLabel>
-            <RadioGroup
-              name={id}
-              value={answer}
-              onChange={handleInputChange}
-              row
-            >
-              {fCLs}
-            </RadioGroup>
-          </FormControl>
-        </Grid>
-        </>
-      )
-  }
-
-  render() {
-    const { type } = this.props
-
-    switch(type) {
-      case "TEXT":
-        return this.renderTextQuestion()
-      case "MULTIPLE_CHOICE":
-        return this.renderMCQuestion()
-      default:
+    renderTextQuestion() {
+        const {value, id, handleInputChange, answer} = this.props
         return (
             <>
                 <Grid item>
@@ -89,18 +33,49 @@ export default class Question extends React.Component {
         )
     }
 
+    renderMCQuestion() {
+        const {value, id, handleInputChange, answer, questionOptions} = this.props
+
+        const fCLs = questionOptions.map((qO) =>
+            (<FormControlLabel
+                key={qO}
+                value={qO}
+                control={<Radio size="small"/>}
+                label={qO}
+            />)
+        )
+
+        return (
+            <>
+                <Grid item>
+                    <FormControl>
+                        <FormLabel>{value}</FormLabel>
+                        <RadioGroup
+                            name={id}
+                            value={answer}
+                            onChange={handleInputChange}
+                            row
+                        >
+                            {fCLs}
+                        </RadioGroup>
+                    </FormControl>
+                </Grid>
+            </>
+        )
+    }
+
     renderRangeQuestion() {
         const {value, id, handleInputChange, answer, minValue, maxValue} = this.props
         const questions = [];
-            for (let i = minValue; i <= maxValue; i++) {
-                questions.push({value: i, text: i.toString()})
-            }
-            const likertOptions = {
-                question: value,
-                responses: questions
-            };
-            return (
-                <Grid item>
+        for (let i = minValue; i <= maxValue; i++) {
+            questions.push({value: i, text: i.toString()})
+        }
+        const likertOptions = {
+            responses: questions
+        };
+        return (
+            <Grid item>
+                <FormLabel>{value}</FormLabel>
                 <Likert
                     {...likertOptions}
                     id={id}
@@ -108,19 +83,34 @@ export default class Question extends React.Component {
                     value={answer}
                     onChange={handleInputChange}
                 />
-                </Grid>
-            )
+            </Grid>
+        )
     }
 
     render() {
         const {type} = this.props
 
         switch (type) {
+            case "TEXT":
+                return this.renderTextQuestion()
+            case "MULTIPLE_CHOICE":
+                return this.renderMCQuestion()
             case "NUMBER_RANGE":
                 return this.renderRangeQuestion()
             default:
                 return (
-                    <div>{this.props.value}</div>
+                    <>
+                        <Grid item>
+                            <FormLabel>{value}</FormLabel>
+                            <TextField
+                                id={id}
+                                name={id}
+                                type="string"
+                                value={answer}
+                                onChange={handleInputChange}
+                            />
+                        </Grid>
+                    </>
                 )
         }
     }
