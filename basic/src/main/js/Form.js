@@ -44,7 +44,7 @@ export default class Form extends React.Component {
     client({method: 'POST', path: '/submission', entity: Object.values(formValues),
       headers: {'Content-Type': 'application/json'}}).done(response => {
         console.log("finished")
-        window.location.assign("http://localhost:8080/thanks");
+        window.location.assign("/thanks");
         });
   };
 
