@@ -10,21 +10,17 @@ export default class Form extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {formValues: {}}
+        this.state = {formValues: {}, questions: []}
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-
-        const {questions} = this.props
-
-        if (prevProps.questions.length !== questions.length) {
-            let formValues = {}
-            for (let question of questions) {
-                formValues[question.id] = ""
-            }
-            this.setState({formValues})
+    componentDidMount() { // <2>
+      client({method: 'GET', path: '/form'}).done(response => {
+        let formValues = {}
+        for (let question of response.entity.questions) {
+          formValues[question.id] = ""
         }
-
+        this.setState({questions: response.entity.questions, formValues});
+      });
     }
 
     handleInputChange = (e) => {
@@ -50,10 +46,9 @@ export default class Form extends React.Component {
 
     render() {
 
-        const {formValues} = this.state
+        const {formValues, questions} = this.state
 
-        const questionsArr = this.props?.questions ?? []
-        const questions = questionsArr.map(question => {
+        const questionsArr = questions.map(question => {
             let onChange = question.type === "NUMBER_RANGE" ? this.handleSliderChange(question.id) : this.handleInputChange
                 return(<Question key={question.id} type={"NUMBER_RANGE"} answer={formValues[question.id]}
                           handleInputChange={onChange}{...question}/>)
@@ -62,7 +57,7 @@ export default class Form extends React.Component {
         return (
           <form onSubmit={this.handleSubmit}>
                 <Grid container alignItems="center" justify="center" direction="column">
-                    {questions}
+                    {questionsArr}
                   <Button variant="contained" color="primary" type="submit">
                     Submit
                   </Button>

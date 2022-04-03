@@ -138,7 +138,7 @@ public class WebUIController {
 
     @GetMapping("/thanks")
     public String displayThanks(Model model) {
-       return "thanks";
+       return "index";
     }
 
     @GetMapping("/survey2")
