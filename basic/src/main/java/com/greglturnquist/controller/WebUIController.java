@@ -58,14 +58,14 @@ public class WebUIController {
         model.addAttribute("Form", form);
         return "result";
     }
-//    @GetMapping("/home")
-//    public String getSurvey(Model model) {
-//        if(closed == true){
-//            return "home";
-//        }else{
-//            return "thanks";
-//        }
-//    }
+    @GetMapping("/home")
+    public String getSurvey(Model model) {
+        if(closed == true){
+            return "home";
+        }else{
+            return "thanks";
+        }
+    }
     @GetMapping("/question")
     public String inputQuestionData(Model model) {
         model.addAttribute("questionForm", new QuestionForm());
@@ -92,19 +92,19 @@ public class WebUIController {
     }
 
 
-    @GetMapping("/survey")
-    public String displaySurvey(Model model) {
-        if (closed != true){
-            return closeForm(model);
-        }
-        model.addAttribute("closed", closed);
-        return "survey";
-    }
-//
-//    @GetMapping("/thanks")
-//    public String displayThanks(Model model) {
-//       return "index";
+//    @GetMapping("/survey")
+//    public String displaySurvey(Model model) {
+//        if (closed != true){
+//            return closeForm(model);
+//        }
+//        model.addAttribute("closed", closed);
+//        return "survey";
 //    }
+
+    @GetMapping("/thanks")
+    public String displayThanks(Model model) {
+       return "index";
+    }
 
     @GetMapping("/survey2")
     public String displaySurvey2(Model model) {
@@ -132,18 +132,18 @@ public class WebUIController {
         return "controlPanel";
     }
 
-    @GetMapping("/closeForm")
-    public String closeForm(Model model) {
-        closed = false;
-//        Iterable<Form> response = repository.findAll();
-//        List<Form> temp = new ArrayList<Form>();
-//        for (Form f : response) {
-//            temp.add(f);
-//        }
-//        Form form = temp.get(0);
-//        List<Question> questionList = form.getQuestions();
-//        model.addAttribute("questions", questionList);
-        return "answerResults";
-    }
+//    @GetMapping("/closeForm")
+//    public String closeForm(Model model) {
+//        closed = false;
+////        Iterable<Form> response = repository.findAll();
+////        List<Form> temp = new ArrayList<Form>();
+////        for (Form f : response) {
+////            temp.add(f);
+////        }
+////        Form form = temp.get(0);
+////        List<Question> questionList = form.getQuestions();
+////        model.addAttribute("questions", questionList);
+//        return "answerResults";
+//    }
 
 }

@@ -12,7 +12,6 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-@RestController
 public class WebController {
 
     private final FormRepository repository;
