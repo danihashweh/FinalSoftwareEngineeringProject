@@ -92,14 +92,14 @@ public class WebUIController {
     }
 
 
-    @GetMapping("/survey")
-    public String displaySurvey(Model model) {
-        if (closed != true){
-            return closeForm(model);
-        }
-        model.addAttribute("closed", closed);
-        return "survey";
-    }
+//    @GetMapping("/survey")
+//    public String displaySurvey(Model model) {
+//        if (closed != true){
+//            return closeForm(model);
+//        }
+//        model.addAttribute("closed", closed);
+//        return "survey";
+//    }
 
     @GetMapping("/thanks")
     public String displayThanks(Model model) {
@@ -132,18 +132,18 @@ public class WebUIController {
         return "controlPanel";
     }
 
-    @GetMapping("/closeForm")
-    public String closeForm(Model model) {
-        closed = false;
-//        Iterable<Form> response = repository.findAll();
-//        List<Form> temp = new ArrayList<Form>();
-//        for (Form f : response) {
-//            temp.add(f);
-//        }
-//        Form form = temp.get(0);
-//        List<Question> questionList = form.getQuestions();
-//        model.addAttribute("questions", questionList);
-        return "answerResults";
-    }
+//    @GetMapping("/closeForm")
+//    public String closeForm(Model model) {
+//        closed = false;
+////        Iterable<Form> response = repository.findAll();
+////        List<Form> temp = new ArrayList<Form>();
+////        for (Form f : response) {
+////            temp.add(f);
+////        }
+////        Form form = temp.get(0);
+////        List<Question> questionList = form.getQuestions();
+////        model.addAttribute("questions", questionList);
+//        return "answerResults";
+//    }
 
 }

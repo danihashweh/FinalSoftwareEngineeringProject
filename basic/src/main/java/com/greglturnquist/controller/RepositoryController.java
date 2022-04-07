@@ -2,18 +2,19 @@ package com.greglturnquist.controller;
 
 import com.greglturnquist.model.Answer;
 import com.greglturnquist.model.form.Form;
-import com.greglturnquist.model.question.Question;
+import com.greglturnquist.model.question.*;
 import com.greglturnquist.repository.FormRepository;
+import net.minidev.json.JSONObject;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 @RestController
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -25,16 +26,46 @@ public class RepositoryController {
         this.repository = repository;
     }
 
+    /**
+     * This is for parsing the array
+     * @param value
+     * @return
+     */
+    public static String decodeValue(String value) {
+        try {
+            return URLDecoder.decode(value, StandardCharsets.UTF_8.toString());
+        } catch (UnsupportedEncodingException ex) {
+            throw new RuntimeException(ex.getCause());
+        }
+    }
 
     /**
      * Creates a form
-     * @param requestBody
+     * @param responseROS
      * @return
      */
     @PostMapping(value = "/createForm", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createForm(@RequestBody String requestBody){
+    public ResponseEntity<?> createForm(@RequestBody List<ResponseRO> responseROS){
         Form form = new Form();
-        return ResponseEntity.status(HttpStatus.CREATED).body("HTTP Status will be CREATED (CODE 201)\n");
+        for(ResponseRO responseRO : responseROS){
+            if (responseRO.getType().equalsIgnoreCase(QuestionType.TEXT.name())){
+                Question question = new TextQuestion(responseRO.getValue());
+                form.addQuestion(question);
+            }else if(responseRO.getType().equalsIgnoreCase(QuestionType.NUMBER_RANGE.name())){
+                Question question = new NumberRangeQuestion(responseRO.getValue(), responseRO.getMinValue(), responseRO.getMaxValue());
+                form.addQuestion(question);
+
+            }else if(responseRO.getType().equalsIgnoreCase(QuestionType.MULTIPLE_CHOICE.name())){
+                MultipleChoiceQuestion question = new MultipleChoiceQuestion(responseRO.getValue());
+                for (String possibleAnswers: responseRO.getAnswers()){
+                    question.addQuestionOption(possibleAnswers);
+                }
+                form.addQuestion(question);
+            }else{
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("bad form\n");
+            }
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body("Form has been created\n");
     }
 
     /**
@@ -44,13 +75,21 @@ public class RepositoryController {
      * @return
      */
     @PostMapping(value = "/submitForm/{formId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> submitForm(@PathVariable UUID formId,@RequestBody String requestBody){
+    public ResponseEntity<?> submitForm(@PathVariable UUID formId, @RequestBody String requestBody){
         Optional<Form> form = repository.findById(formId);
         List<Question> questionList = form.get().getQuestions();
-        for (Question question : questionList){
-            Answer answer = new Answer();
+        //parse for the answer
+        String decodedValue = decodeValue(requestBody);
+        decodedValue = decodedValue.substring(0, decodedValue.length() - 1);
+        System.out.println(decodedValue);
+        List<String> answerList = Arrays.asList(decodedValue.split(","));
+        // set the answer to the question
+        for(int i = 0; i < questionList.size(); i++){
+            Answer answer = new Answer(answerList.get(i));
+            questionList.get(i).addAnswerList(answer);
+            answer.setQuestion(questionList.get(i));
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body("HTTP Status will be CREATED (CODE 201)\n");
+        return ResponseEntity.status(HttpStatus.OK).body("Submission was successful\n");
     }
 
     /**
@@ -91,6 +130,17 @@ public class RepositoryController {
         boolean isOpen = form.get().isFormOpen();
         if (isOpen) return ResponseEntity.status(HttpStatus.OK).body("Open");
         return ResponseEntity.status(HttpStatus.OK).body("Closed");
+    }
+
+    /**
+     * Close the form
+     * @param formId
+     * @return
+     */
+    @GetMapping(value = "/getForm/{formId}")
+    public ResponseEntity<?> getForm(@PathVariable UUID formId){
+        Optional<Form> form = repository.findById(formId);
+        return ResponseEntity.status(HttpStatus.OK).body(form);
     }
 
 }
