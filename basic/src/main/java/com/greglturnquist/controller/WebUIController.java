@@ -58,14 +58,14 @@ public class WebUIController {
         model.addAttribute("Form", form);
         return "result";
     }
-    @GetMapping("/home")
-    public String getSurvey(Model model) {
-        if(closed == true){
-            return "home";
-        }else{
-            return "thanks";
-        }
-    }
+//    @GetMapping("/home")
+//    public String getSurvey(Model model) {
+//        if(closed == true){
+//            return "home";
+//        }else{
+//            return "thanks";
+//        }
+//    }
     @GetMapping("/question")
     public String inputQuestionData(Model model) {
         model.addAttribute("questionForm", new QuestionForm());
@@ -100,11 +100,11 @@ public class WebUIController {
         model.addAttribute("closed", closed);
         return "survey";
     }
-
-    @GetMapping("/thanks")
-    public String displayThanks(Model model) {
-       return "index";
-    }
+//
+//    @GetMapping("/thanks")
+//    public String displayThanks(Model model) {
+//       return "index";
+//    }
 
     @GetMapping("/survey2")
     public String displaySurvey2(Model model) {

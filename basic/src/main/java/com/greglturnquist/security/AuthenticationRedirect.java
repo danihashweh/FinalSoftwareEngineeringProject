@@ -25,7 +25,7 @@ public class AuthenticationRedirect implements AuthenticationSuccessHandler {
         } else {
             //Redirect it to a page that allows user to see survey
             //If closed, do not allow them to access the survey
-            response.sendRedirect("/home");
+            response.sendRedirect("/#/home");
         }
 
     }
