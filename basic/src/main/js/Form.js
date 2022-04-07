@@ -10,16 +10,17 @@ class Form extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {formValues: {}, questions: []}
+        this.state = {formValues: {}, questions: [], formId: ""}
     }
 
     componentDidMount() { // <2>
-      client({method: 'GET', path: '/form'}).done(response => {
+      const formId = new URLSearchParams(this.props.location.search).get("formId")
+      client({method: 'GET', path: '/getForm', params:{formId}}).done(response => {
         let formValues = {}
         for (let question of response.entity.questions) {
           formValues[question.id] = ""
         }
-        this.setState({questions: response.entity.questions, formValues});
+        this.setState({questions: response.entity.questions, formValues, formId});
       });
     }
 
