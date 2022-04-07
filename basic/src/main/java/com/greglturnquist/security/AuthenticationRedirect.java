@@ -1,6 +1,5 @@
 package com.greglturnquist.security;
 
-import com.greglturnquist.controller.WebUIController;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;

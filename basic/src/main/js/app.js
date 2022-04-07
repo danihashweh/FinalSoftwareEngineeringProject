@@ -12,13 +12,6 @@ class App extends React.Component { // <1>
 
 	constructor(props) {
 		super(props);
-		this.state = {form: {questions : []}};
-	}
-
-	componentDidMount() { // <2>
-		client({method: 'GET', path: '/form'}).done(response => {
-			this.setState({form: response.entity});
-		});
 	}
 
 	render() { // <3>
