@@ -5,7 +5,7 @@ class Thanks extends React.Component {
   render() {
 
     return (
-      <div>This is a test message</div>
+      <div>Thank you for participating in this survey</div>
     )
   }
 }
