@@ -1,10 +1,15 @@
 package com.greglturnquist.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.greglturnquist.model.Answer;
 import com.greglturnquist.model.form.Form;
 import com.greglturnquist.model.question.Question;
 import com.greglturnquist.repository.FormRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @RestController
@@ -14,6 +19,14 @@ public class WebController {
 
     public WebController(FormRepository repository) {
         this.repository = repository;
+    }
+
+    public static String decodeValue(String value) {
+        try {
+            return URLDecoder.decode(value, StandardCharsets.UTF_8.toString());
+        } catch (UnsupportedEncodingException ex) {
+            throw new RuntimeException(ex.getCause());
+        }
     }
 
     @PostMapping("/form")
@@ -69,6 +82,41 @@ public class WebController {
             repository.save(book);
             return new PrimitiveResponse<>("success", true);
         }
+        return new PrimitiveResponse<>("success", false);
+    }
+
+    @PostMapping(value = "/submission")
+    public PrimitiveResponse<Boolean> submitForm(@RequestBody String body) throws JsonProcessingException {
+        System.out.println(body);
+        String decodedValue = decodeValue(body);
+        decodedValue = decodedValue.substring(0, decodedValue.length() - 1);
+        System.out.println(decodedValue);
+        List<String> answerList = Arrays.asList(decodedValue.split(","));
+        for(String s : answerList){
+            System.out.println(s);
+        }
+        System.out.println(answerList);
+        Iterable<Form> response = repository.findAll();
+        List<Form> temp = new ArrayList<Form>();
+        for (Form f : response) {
+            temp.add(f);
+        }
+        Form f = temp.get(0);
+//
+
+        List<Question> questionList = f.getQuestions();
+//        for(Question q: questionList){
+//            System.out.println(q);
+//            Answer answer = new Answer("hey");
+//            q.addAnswerList(answer);
+//            answer.setQuestion(q);
+//        }
+        for(int i = 0; i < questionList.size(); i++){
+            Answer answer = new Answer(answerList.get(i));
+            questionList.get(i).addAnswerList(answer);
+            answer.setQuestion(questionList.get(i));
+        }
+        repository.save(f);
         return new PrimitiveResponse<>("success", false);
     }
 

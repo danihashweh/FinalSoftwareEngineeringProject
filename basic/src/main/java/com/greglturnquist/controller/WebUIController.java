@@ -58,41 +58,6 @@ public class WebUIController {
         model.addAttribute("Form", form);
         return "result";
     }
-    @PostMapping(value = "/submission")
-    public String submitForm(@RequestBody String body) throws JsonProcessingException {
-        System.out.println(body);
-        String decodedValue = decodeValue(body);
-        decodedValue = decodedValue.substring(0, decodedValue.length() - 1);
-        System.out.println(decodedValue);
-        List<String> answerList = Arrays.asList(decodedValue.split(","));
-        for(String s : answerList){
-            System.out.println(s);
-        }
-        System.out.println(answerList);
-        Iterable<Form> response = repository.findAll();
-        List<Form> temp = new ArrayList<Form>();
-        for (Form f : response) {
-            temp.add(f);
-        }
-        Form f = temp.get(0);
-//
-
-        List<Question> questionList = f.getQuestions();
-//        for(Question q: questionList){
-//            System.out.println(q);
-//            Answer answer = new Answer("hey");
-//            q.addAnswerList(answer);
-//            answer.setQuestion(q);
-//        }
-        for(int i = 0; i < questionList.size(); i++){
-            Answer answer = new Answer(answerList.get(i));
-            questionList.get(i).addAnswerList(answer);
-            answer.setQuestion(questionList.get(i));
-        }
-        repository.save(f);
-        return "thanks";
-
-    }
     @GetMapping("/home")
     public String getSurvey(Model model) {
         if(closed == true){
