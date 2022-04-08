@@ -4,8 +4,6 @@ import com.greglturnquist.model.Answer;
 import com.greglturnquist.model.form.Form;
 import com.greglturnquist.model.question.*;
 import com.greglturnquist.repository.FormRepository;
-import net.minidev.json.JSONObject;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -126,9 +124,12 @@ public class RepoController {
     @GetMapping(value = "/getFormStatus/{formId}")
     public ResponseEntity<?> getFormStatus(@PathVariable UUID formId){
         Optional<Form> form = repository.findById(formId);
-        boolean isOpen = form.get().isFormOpen();
-        if (isOpen) return ResponseEntity.status(HttpStatus.OK).body("Open");
-        return ResponseEntity.status(HttpStatus.OK).body("Closed");
+        if (form.isPresent()){
+            boolean isOpen = form.get().isFormOpen();
+            if (isOpen) return ResponseEntity.status(HttpStatus.OK).body("Open");
+            return ResponseEntity.status(HttpStatus.OK).body("Closed");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Form not found");
     }
 
     /**
@@ -139,7 +140,10 @@ public class RepoController {
     @GetMapping(value = "/getForm/{formId}")
     public ResponseEntity<?> getForm(@PathVariable UUID formId){
         Optional<Form> form = repository.findById(formId);
-        return ResponseEntity.status(HttpStatus.OK).body(form);
+        if (form.isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(form.get());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Form not found");
     }
 
 }
