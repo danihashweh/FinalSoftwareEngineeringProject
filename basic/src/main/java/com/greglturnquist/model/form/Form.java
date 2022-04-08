@@ -20,6 +20,8 @@ public class Form {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "form")
     private List<Question> questions;
 
+    private boolean isOpen;
+
     /**
      *   Initialize id and questions arraylist to create a Form which will hold questions
      */
@@ -27,6 +29,7 @@ public class Form {
     public Form() {
         this.id = UUID.randomUUID();
         questions = new ArrayList<>();
+        isOpen = true;
     }
 
     /**
@@ -96,6 +99,20 @@ public class Form {
         return false;
     }
 
+    /**
+     *
+     * @return the status of the form
+     */
+    public boolean isFormOpen(){
+        return isOpen;
+    }
+
+    /**
+     * closes the form
+     */
+    public void closeForm(){
+        isOpen = false;
+    }
 
     @Override
     public String toString() {
