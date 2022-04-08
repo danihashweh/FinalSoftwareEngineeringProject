@@ -29,13 +29,12 @@ class Results extends React.Component {
                     }
             }
 
-            return (
-                <div>
-                    {text}
-                </div>
-            )
-
         }
+        return (
+            <div>
+                {text}
+            </div>
+        )
     }
 }
 export default Results;
