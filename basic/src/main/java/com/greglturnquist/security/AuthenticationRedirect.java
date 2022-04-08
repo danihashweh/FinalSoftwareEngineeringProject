@@ -20,7 +20,7 @@ public class AuthenticationRedirect implements AuthenticationSuccessHandler {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
         if (roles.contains("ROLE_ADMIN")) {
-            response.sendRedirect("/admin");
+            response.sendRedirect("/#/admin");
         } else {
             //Redirect it to a page that allows user to see survey
             //If closed, do not allow them to access the survey

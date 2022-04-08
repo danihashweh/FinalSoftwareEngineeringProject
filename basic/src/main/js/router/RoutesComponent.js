@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom';
 import Form from "../Form";
 import Thanks from "../Thanks";
 import Home from "../Home";
+import Admin from "../Admin";
 
 class RoutesComponent extends Component {
   render() {
@@ -13,7 +14,7 @@ class RoutesComponent extends Component {
         <Route exact path="/survey" component={Form} />
         <Route exact path="/thanks" component={Thanks} />
         <Route exact path="/home" component={Home} />
-        {/*<Route exact path="/settings" component={SettingsPage} />*/}
+        <Route exact path="/admin" component={Admin} />
       </div>
     );
   }

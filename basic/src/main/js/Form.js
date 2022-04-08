@@ -21,6 +21,8 @@ class Form extends React.Component {
           formValues[question.id] = ""
         }
         this.setState({questions: response.entity.questions, formValues, formId});
+        if (!response.entity.formOpen) window.location.assign("/#/thanks");
+
       });
     }
 

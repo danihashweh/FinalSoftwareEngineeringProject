@@ -62,6 +62,7 @@ public class RepoController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("bad form\n");
             }
         }
+        repository.save(form);
         return ResponseEntity.status(HttpStatus.CREATED).body("Form has been created\n");
     }
 
@@ -86,6 +87,7 @@ public class RepoController {
             questionList.get(i).addAnswerList(answer);
             answer.setQuestion(questionList.get(i));
         }
+        repository.save(form.get());
         return ResponseEntity.status(HttpStatus.OK).body("Submission was successful\n");
     }
 
@@ -113,6 +115,7 @@ public class RepoController {
     public ResponseEntity<?> closeForm(@PathVariable UUID formId){
         Optional<Form> form = repository.findById(formId);
         form.get().closeForm();
+        repository.save(form.get());
         return ResponseEntity.status(HttpStatus.OK).body("Form has been closed\n");
     }
 
