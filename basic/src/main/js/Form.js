@@ -34,16 +34,16 @@ class Form extends React.Component {
         const {formValues} = this.state
         this.setState({formValues: {...formValues, [id]: value.text}});
     };
-  handleSubmit = (event) => {
-    const { formValues } = this.state
-    event.preventDefault();
-    console.log(formValues);
-    client({method: 'POST', path: '/submission', entity: Object.values(formValues),
-      headers: {'Content-Type': 'application/json'}}).done(response => {
-        console.log("finished")
-        window.location.assign("/thanks");
+    handleSubmit = (event) => {
+      const { formValues, formId } = this.state
+      event.preventDefault();
+      console.log(formValues);
+      client({method: 'POST', path: `/submitForm/${formId}`, entity: Object.values(formValues),
+        headers: {'Content-Type': 'application/json', 'Accept': 'text/plain'}}).done(response => {
+          console.log("finished")
+          window.location.assign("/#/thanks");
         });
-  };
+    };
 
     render() {
 
