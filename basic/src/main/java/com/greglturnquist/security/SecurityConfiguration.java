@@ -38,7 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .successHandler(authenticationSuccessHandler)
                 .failureUrl("/?error=true")
-                .permitAll();
+                .permitAll().and().httpBasic();
     }
 
     @Override

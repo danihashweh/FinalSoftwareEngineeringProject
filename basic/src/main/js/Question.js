@@ -9,7 +9,7 @@ import Radio from "@material-ui/core/Radio";
 
 const React = require('react'); // <1>
 
-export default class Question extends React.Component {
+class Question extends React.Component {
 
     constructor(props) {
         super(props);
@@ -115,3 +115,5 @@ export default class Question extends React.Component {
         }
     }
 }
+
+export default Question;
