@@ -1,17 +1,19 @@
 package com.greglturnquist.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.greglturnquist.model.Answer;
 import com.greglturnquist.model.form.Form;
-import com.greglturnquist.model.question.Question;
 import com.greglturnquist.model.form.data.AnswerAndQuestion;
 import com.greglturnquist.model.form.data.DataForm;
 import com.greglturnquist.model.form.data.QuestionForm;
+import com.greglturnquist.model.question.Question;
 import com.greglturnquist.repository.FormRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -20,7 +22,6 @@ import java.util.*;
 
 @Controller
 public class WebUIController {
-
     private final FormRepository repository;
     private static boolean closed = true;
 
@@ -180,5 +181,4 @@ public class WebUIController {
 //        model.addAttribute("questions", questionList);
         return "answerResults";
     }
-
 }
