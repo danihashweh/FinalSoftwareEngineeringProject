@@ -36,7 +36,13 @@ Notion meeting notes: https://www.notion.so/Meeting-notes-4-6-2022-6abf455467904
 
 For the final milestone we want to achieve a polished version of a survey monkey form.
 
+Fix: 
+- React and Spring
+- Backend to Reroute to index for react. 
+
 Features to be added:
+- Ability to close survey and create a new one. 
+- Histograms for the number questions. 
 - Ability to add more than one survey
 - Give the ability to create users 
 
