@@ -31,6 +31,9 @@ thymeleaf/html framework, not as many new features were added. We added an authe
 depending on the type of user logged in. For this feature, we kept a master admin user/password and a test user user/password which can be found in the security config. We also added different types of questions so that the survey is not limited to just text areas. Building from the previous milestone, our project is still being integrated with CircleCI and Heroku is being used to deploy the application. Our progress is being tracked the same way as our previous milestone.
 
 **Milestone 3:**
+
+Notion meeting notes: https://www.notion.so/Meeting-notes-4-6-2022-6abf455467904c1ca5d751c18388087b
+
 For the final milestone we want to achieve a polished version of a survey monkey form.
 
 Features to be added:
