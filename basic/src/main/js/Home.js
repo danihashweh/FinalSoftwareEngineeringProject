@@ -20,6 +20,10 @@ class Home extends React.Component {
     window.location.assign(`/#/survey?formId=${formId}`);
   }
 
+  login() {
+    window.location.assign("/login");
+  }
+
   render() {
     const { formIds } = this.state
     let buttons = []
@@ -31,6 +35,7 @@ class Home extends React.Component {
     return(
       <div>
         {buttons}
+        <button onClick={this.login}>Login</button>
       </div>
     )
   }

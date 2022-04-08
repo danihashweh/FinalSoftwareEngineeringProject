@@ -28,14 +28,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers( "/dataForm").hasRole("ADMIN")
                 .antMatchers( "/formResult").hasRole("ADMIN")
                 .antMatchers( "/login").permitAll()
-                .antMatchers( "/questions").permitAll()
-                .antMatchers( "/result").permitAll()
-                .antMatchers( "/survey").permitAll()
-                .antMatchers( "/survey2").permitAll()
-                .antMatchers( "/Thanks").permitAll()
-                .anyRequest().authenticated()
                 .and()
-                .formLogin()
+                .formLogin().permitAll()
                 .successHandler(authenticationSuccessHandler)
                 .failureUrl("/?error=true")
                 .permitAll().and().httpBasic();
@@ -44,10 +38,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("user")
-                .password("{noop}pass") // Spring Security 5 requires specifying the password storage format
-                .roles("USER")
-                .and()
                 .withUser("admin")
                 .password("{noop}admin")
                 .roles("ADMIN");
