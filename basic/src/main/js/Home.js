@@ -17,7 +17,7 @@ class Home extends React.Component {
   }
 
   submit = (formId) => () => {
-    window.location.assign(`/survey?formId=${formId}`);
+    window.location.assign(`/#/survey?formId=${formId}`);
   }
 
   render() {
@@ -26,7 +26,7 @@ class Home extends React.Component {
 
 
     for (let formId of formIds) {
-      buttons.push(<Button>{formId}</Button>)
+      buttons.push(<Button key={formId} variant="contained" onClick={this.submit(formId)}>{formId}</Button>)
     }
     return(
       <div>

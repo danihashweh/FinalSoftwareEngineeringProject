@@ -15,7 +15,7 @@ class Form extends React.Component {
 
     componentDidMount() { // <2>
       const formId = new URLSearchParams(this.props.location.search).get("formId")
-      client({method: 'GET', path: '/getForm', params:{formId}}).done(response => {
+      client({method: 'GET', path: `/getForm/${formId}`}).done(response => {
         let formValues = {}
         for (let question of response.entity.questions) {
           formValues[question.id] = ""

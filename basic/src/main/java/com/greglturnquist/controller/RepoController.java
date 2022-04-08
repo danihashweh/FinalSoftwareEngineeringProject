@@ -103,7 +103,7 @@ public class RepoController {
             formIds.add(form.getId());
         }
         //make a check if the form id is empty
-        return ResponseEntity.status(HttpStatus.OK).body("hello");
+        return ResponseEntity.status(HttpStatus.OK).body(formIds);
     }
 
     /**
@@ -139,7 +139,7 @@ public class RepoController {
     @GetMapping(value = "/getForm/{formId}")
     public ResponseEntity<?> getForm(@PathVariable UUID formId){
         Optional<Form> form = repository.findById(formId);
-        return ResponseEntity.status(HttpStatus.OK).body(form);
+        return ResponseEntity.status(HttpStatus.OK).body(form.get());
     }
 
 }

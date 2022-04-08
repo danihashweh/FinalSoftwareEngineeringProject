@@ -10,7 +10,7 @@ class RoutesComponent extends Component {
   render() {
     return (
       <div>
-        <Route exact path="/" component={Form} />
+        <Route exact path="/survey" component={Form} />
         <Route exact path="/thanks" component={Thanks} />
         <Route exact path="/home" component={Home} />
         {/*<Route exact path="/settings" component={SettingsPage} />*/}
