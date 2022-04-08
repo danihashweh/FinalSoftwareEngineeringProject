@@ -7,6 +7,7 @@ import Thanks from "../Thanks";
 import Home from "../Home";
 import Admin from "../Admin";
 import CreateForm from "../CreateForm";
+import Results from "../Results";
 
 class RoutesComponent extends Component {
   render() {
@@ -17,6 +18,7 @@ class RoutesComponent extends Component {
         <Route exact path="/home" component={Home} />
         <Route exact path="/admin" component={Admin} />
         <Route exact path="/CreateNewForm" component={CreateForm} />
+          <Route exact path="/results" component={Results} />
       </div>
     );
   }

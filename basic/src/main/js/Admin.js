@@ -19,7 +19,7 @@ class Admin extends React.Component {
   close = (formId) => () => {
     client({method: 'GET', path: `/closeForm/${formId}`,
       headers: {'Accept': 'text/plain'}}).done(response => {
-      window.location.assign("/#/results");
+      window.location.assign(`/#/results?formId=${formId}`);
     });
   }
 
