@@ -17,7 +17,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @RestController
-@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class RepoController {
 
     private final FormRepository repository;
