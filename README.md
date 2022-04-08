@@ -36,6 +36,9 @@ Notion meeting notes: https://www.notion.so/Meeting-notes-4-6-2022-6abf455467904
 
 For the final milestone we want to achieve a polished version of a survey monkey form.
 
+UML Class diagram (Milestone 3 Updated)
+![image](https://i.imgur.com/ejq5b3p.png)
+
 Fix: 
 - React and Spring
 - Backend to Reroute to index for react. 
