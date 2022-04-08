@@ -16,11 +16,15 @@ class Admin extends React.Component {
     });
   }
 
-  submit = (formId) => () => {
+  close = (formId) => () => {
     client({method: 'GET', path: `/closeForm/${formId}`,
       headers: {'Accept': 'text/plain'}}).done(response => {
       window.location.assign("/#/results");
     });
+  }
+
+  create = () => {
+    window.location.assign("/#/CreateNewForm");
   }
 
   render() {
@@ -29,13 +33,14 @@ class Admin extends React.Component {
 
 
     for (let formId of formIds) {
-      buttons.push(<Button key={formId} variant="contained" onClick={this.submit(formId)}>{formId}</Button>)
+      buttons.push(<Button key={formId} variant="contained" onClick={this.close(formId)}>{formId}</Button>)
     }
     return(
       <div>
         <h2>Close Forms</h2>
         {buttons}
         <h2>Admin actions</h2>
+        <Button variant="contained" onClick={this.create}>Create Form</Button>
       </div>
     )
   }
